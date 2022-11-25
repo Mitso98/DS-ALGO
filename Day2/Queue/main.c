@@ -5,6 +5,7 @@
 int main()
 {
     Queue *q = (Queue*)malloc(sizeof(Queue));
+
     q->front = NULL;
     q->rear = NULL;
     q->length = 0;
@@ -15,6 +16,7 @@ int main()
 
     DeQueue(q);
     DeQueue(q);
+
     display(q);
     return 0;
 }
