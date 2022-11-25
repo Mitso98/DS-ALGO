@@ -15,17 +15,20 @@ Node* top = NULL;
 
 typedef struct Stack
 {
+    int length;
     Node *NewNode;
     Node *top;
-}Stack;
+} Stack;
 
 int Push(Stack *stk, int data)
 {
-    if(stk->top == MaxSize-1)
+    if(stk->length == MaxSize)
         return 0;
 
     Node *newNode = malloc(sizeof(Node));
     newNode->Data = data;
+    newNode->Next = NULL;
+
     if(top == NULL)
     {
         top = newNode;
@@ -35,21 +38,46 @@ int Push(Stack *stk, int data)
         newNode->Next=top;
     }
     top = newNode;
-    printf("Node is Inserted\n\n");
+
+
+    stk->top = top;
+    stk->length += 1;
+    stk->NewNode= newNode;
+
+
+
+    printf("Node %d is Inserted\n\n", newNode->Data);
     return 1;
 }
 
-/*int Pop(Stack *stk, int *data)
+int Pop(Stack *s)
 {
-    if(stk->top == -1)
+    if(top == NULL)
     {
         return 0;
     }
 
-    *data = stk->arr[stk->top];
-    stk->top--;
+    printf("Node %d is poped\n\n", s->NewNode->Data);
+
+    s->NewNode = s->NewNode->Next;
+    s->length -= 1;
+    s->top = s->NewNode;
 
     return 1;
-}*/
+}
+
+void display(Stack *s)
+{
+    do
+    {
+
+        printf(">>> %d", s->NewNode->Data);
+        s->NewNode = s->NewNode->Next;
+
+    }
+    while(s->NewNode->Next != NULL);
+
+    printf(">>> %d", s->NewNode->Data);
+}
 
 #endif // STACK_H

@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1669390738 source:d:\iti\algo&ds\day2\queue\main.c
+	<stdio.h>
+	<stdlib.h>
+	"./include/Queue.h"
+
+1669390752 d:\iti\algo&ds\day2\queue\include\queue.h
+

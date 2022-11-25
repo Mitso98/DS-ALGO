@@ -2,41 +2,64 @@
 #define QUEUE_H
 
 #define MaxQSize 5
-
+typedef struct Node
+{
+    int data;
+    struct Node *prevNode;
+} Node;
 typedef struct Queue
 {
-    int arr[MaxQSize];
-    int front, rear;
-
-}Queue;
+    int length;
+    Node *front;
+    Node *rear;
+} Queue;
 
 void EnQueue(Queue *q, int data)
 {
-    if(q->rear == MaxQSize - 1)
+    // do not insert if maximum is reached
+    if(q->length == MaxQSize)
         return;
 
-    if(q->front == -1)
-        q->front++;
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
 
-    q->rear++;
-    q->arr[q->rear] = data;
-}
+    q->length += 1;
 
-int DeQueue(Queue *q, int *data)
-{
-    q->front++;
-
-    if(q->front == -1)
+    if(q->length != 1)
     {
-        return 0;
+        newNode->prevNode = q->front;
+        q->front = newNode;
+
     }
     else
     {
-        *data = q->arr[q->front];
-        q->front++;
-
-        return 1;
+        newNode->prevNode = NULL;
+        q->rear = newNode;
+        q->front = newNode;
     }
 }
 
+void DeQueue(Queue *q)
+{
+    if(q->length == 0)
+    {
+        return;
+    }
+    else
+    {
+        q->rear->data = q->front[1].data;
+        q->length -= 1;
+    }
+
+}
+
+void display(Queue * q)
+{
+    int i;
+    for(i = 0; i < q->length; i++)
+    {
+        printf(">> %d", q->front->data);
+        q->front = q->front->prevNode;
+    }
+}
 #endif // QUEUE_H

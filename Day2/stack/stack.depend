@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1669385161 source:d:\iti\algo&ds\day2\stack\main.c
+	<stdio.h>
+	<stdlib.h>
+	"./include/Stack.h"
+
+1669385336 d:\iti\algo&ds\day2\stack\include\stack.h
+

@@ -165,10 +165,10 @@ int GetDataByIndex(int index){
 
     }else{
 
-        printf("\undefined");
+        printf("undefined");
 
         return 0;
-    };
+    }
 
 };
 
