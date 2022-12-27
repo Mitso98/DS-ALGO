@@ -128,39 +128,65 @@ void DisplayList(Node *head)
     }
 }
 
-int BinarySearchLinkedList(Node *head, int value)
+int MaxIndex(Node *head, int minIndex)
 {
-    int minIndex = 0, maxIndex = 0, midIndex;
-    Node *current = head->next;
-
+    int maxIndex = 0;
     //find length
-    while(current->next != NULL)
+    while(head->next != NULL)
     {
         maxIndex += 1;
-        current = current->next;
+        head = head->next;
     }
-
     maxIndex -= 1;
 
-    while(minIndex <= maxIndex)
+    return maxIndex;
+}
+
+Node* FindMid(Node* start, Node* last)
+{
+    if (start == NULL)
+        return NULL;
+    Node* slow = start;
+    Node* fast = start->next;
+
+    while (fast != last)
     {
-        current = head;
-        midIndex = (minIndex + maxIndex) / 2;
-
-        if(value == current[midIndex].value)
+        printf(">>mid");
+        fast = fast -> next;
+        if (fast != last)
         {
-            return 1;
+            slow = slow -> next;
+            fast = fast -> next;
         }
-
-        if(value > current[2].value)
-        {
-            printf("### %d %d", current[midIndex].value, midIndex);
-            minIndex = midIndex + 1;
-        }
-        else
-            maxIndex = midIndex - 1;
     }
-    return -1;
+
+    return slow;
+}
+
+int BinarySearchLinkedList(Node *head, int value)
+{
+    Node* start = head;
+    Node* last = NULL;
+
+    do
+    {
+        Node* mid = FindMid(start, last);
+
+        if (mid == NULL)
+            return 1;
+
+        if (mid->value == value)
+            return mid->value;
+
+        // if value is more than mid
+        if (value > mid->value)
+            start = mid->next;
+        else
+            last = mid;
+
+    }while(last != start);
+
+    return 0;
 }
 
 void BubleSortLinkedList(Node * head)
@@ -223,6 +249,9 @@ int main()
 
     printf("\nSoreted:\n");
     DisplayList(head);
+
+    printf("\nvalue of binary search: %d", BinarySearchLinkedList(head,1));
+
 
     //printf("\n>>> %d", BinarySearchLinkedList(head, 6));
     return 0;
