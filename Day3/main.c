@@ -242,6 +242,7 @@ int main()
     Push(head, 5);
     Push(head, 2);
     Push(head, 1);
+    Push(head, 7);
 
     DisplayList(head);
 
@@ -250,7 +251,7 @@ int main()
     printf("\nSoreted:\n");
     DisplayList(head);
 
-    printf("\nvalue of binary search: %d", BinarySearchLinkedList(head,1));
+    printf("\nvalue of binary search: %d", BinarySearchLinkedList(head,5));
 
 
     //printf("\n>>> %d", BinarySearchLinkedList(head, 6));
