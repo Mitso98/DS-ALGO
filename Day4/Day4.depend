@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1672222206 source:d:\iti\algo&ds\day4\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Tree.h"
+
+1672222160 d:\iti\algo&ds\day4\include\tree.h
+
