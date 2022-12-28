@@ -175,19 +175,14 @@ void Display(Node *node)
     Display(node->Right);
 }
 
-int GetMaxDepth(Tree *tree)
+int GetMaxDepth(Node *node)
 {
-    //Tree *current = tree;
-    Node* current = tree->Root;
-
-    if (current->Left == NULL || current->Right == NULL)
-    {
+    if (node == NULL)
         return 0;
-    }
     else
     {
-        int leftDepth = GetMaxDepth(&tree);
-        int rightDepth = GetMaxDepth(&tree);
+        int leftDepth = GetMaxDepth(node->Left);
+        int rightDepth = GetMaxDepth(node->Right);
 
         if (leftDepth > rightDepth)
         {
